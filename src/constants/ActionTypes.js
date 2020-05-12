@@ -1,0 +1,1 @@
+export const OPEN_SNAPSHOT = "OPEN_SNAPSHOT";

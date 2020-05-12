@@ -1,0 +1,37 @@
+{
+    "paths": [
+        {
+            "name": "/ec2",
+            "lambdaFunction": "ec2Func",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            }
+        }
+    ],
+    "resourceName": "infra",
+    "apiName": "infra",
+    "functionArns": [
+        {
+            "lambdaFunction": "ec2Func"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-infravisual-dev-43128-authRole",
+        "unAuthRoleName": "amplify-infravisual-dev-43128-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "ec2Func",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
