@@ -30,7 +30,7 @@ const styles = theme => ({
 });
 
 const linkMap = {
-    "#/patients": (classes, params) => {
+    "#/ec2": (classes, params) => {
         return {
             element: () => (
                 <Fragment>
@@ -41,7 +41,7 @@ const linkMap = {
             params: ""
         };
     },
-    "#/patients/upload": (classes, params) => {
+    "#/ec2/upload": (classes, params) => {
         return {
             element: () => (
                 <Fragment>
@@ -52,7 +52,7 @@ const linkMap = {
             params: ""
         };
     },
-    "#/patients/heartrate": (classes, params) => {
+    "#/ec2/heartrate": (classes, params) => {
         return {
             element: () => (
                 <Fragment>
@@ -63,7 +63,7 @@ const linkMap = {
             params: `ident=${params["ident"]}`
         };
     },
-    "#/patients/heartrate/snapshots": (classes, params) => {
+    "#/ec2/heartrate/snapshots": (classes, params) => {
         return {
             element: () => (
                 <Fragment>
@@ -120,7 +120,7 @@ class MyBreadcrumbs extends Component {
                         const to = `#/${hashes.slice(0, index + 1).join("/")}`;
 
                         if (!groups.includes("Doctors")) {
-                            if (to === "#/patients") return;
+                            if (to === "#/ec2") return;
                         }
 
                         if (to in linkMap) {

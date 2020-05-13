@@ -68,7 +68,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-infravisual-dev-43128-deployment",
-					"S3Key": "amplify-builds/ec2Func-44482b74784437744d39-build.zip"
+					"S3Key": "amplify-builds/ec2Func-4e443033684a6d684254-build.zip"
 				}
 			}
 		},

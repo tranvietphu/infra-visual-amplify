@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import queryString from "query-string";
 
 import Home from "../Home";
-import patientTable from "../components/patientTable";
+import ec2Table from "../components/ec2Table";
 
 class ProtectedRouteComponent extends Component {
     render() {
@@ -61,8 +61,8 @@ class Routes extends Component {
             <Switch>
                 <Route exact path={"/"} component={Home} />
                 <ProtectedRoute
-                    path="/patients"
-                    component={patientTable}
+                    path="/ec2"
+                    component={ec2Table}
                     allowed={["Doctors"]}
                 />
                 <Route render={() => <Redirect to="/" />} />

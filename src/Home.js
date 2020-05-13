@@ -11,6 +11,7 @@ const styles = theme => ({
 });
 
 function Home(props) {
+	/*
 	if (props.groups.includes("Patients")) {
 		window.location.href = `#/patients/heartrate?ident=${props.username}`;
 	} else if(props.groups.includes("Doctors")) {
@@ -18,6 +19,8 @@ function Home(props) {
 	} else if(props.groups.includes("Collectors")) {
 		window.location.href = "#/patients/upload";
 	}
+	*/
+	window.location.href = "#/ec2";
 	return <Fragment />;
 }
 

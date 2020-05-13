@@ -30,12 +30,16 @@ app.use(function (req, res, next) {
  **********************/
 
 app.get('/ec2', function (req, res) {
-  // Add your code here
-  console.log(JSON.stringify(req));
-  let ec2 = new AWS.EC2({ apiVersion: '2016-11-15', region: 'ap-northeast-12' });
   let result = [];
-  let statusCode = 200;
   let params = {};
+  let _region = process.env.AWS_REGION;
+  const query = req.query;
+  if (query.region) {
+    console.log(query.region);
+    _region = query.region
+  }
+  console.log("_region =" + _region);
+  let ec2 = new AWS.EC2({ apiVersion: '2016-11-15', region: _region });
   ec2.describeInstances(params, function (err, data) {
     if (err) {
       console.error(err);

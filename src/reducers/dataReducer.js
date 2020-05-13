@@ -1,21 +1,14 @@
- import { handleActions } from "redux-actions";
+import { handleActions } from "redux-actions";
 import actions from "../actions/dataActions";
-import equal from "deep-equal";
 import { Logger } from "aws-amplify";
 
 const logger = new Logger("dataReducer");
 
 const initialState = {
-    items: {},
-    snapshots: {},
+    ec2s: {},
+    region: "ap-northeast-1",
     fetched: false,
-    loading: false,
-    changes: {
-        insert: [],
-        delete: [],
-        update: []
-    },
-    changed: false
+    loading: false
 };
 
 export default handleActions(
@@ -26,71 +19,27 @@ export default handleActions(
                 loading: true
             };
         },
-        [actions.fetchData]: (state, action) => {
-            const fetchData = action.payload.reduce(
+        [actions.fetchEc2]: (state, action) => {
+            const _items = action.payload.reduce(
                 (a, c) => ({ ...a, [c.id]: c }),
                 {}
             );
 
-            logger.debug(`insertItems: ${JSON.stringify(fetchData)}`);
+
+            logger.debug(`insertItems: ${JSON.stringify(_items)}`);
 
             return {
                 ...state,
-                items: fetchData,
+                ec2s: _items,
                 fetched: true,
-                loading: false,
-                changes: {
-                    insert: [],
-                    delete: [],
-                    update: []
-                },
-                changed: false
-            };
-        },
-        [actions.fetchSnapshot]: (state, action) => {
-            return {
-                ...state,
-                snapshots: action.payload.snapshots,
                 loading: false
             };
         },
-        [actions.checkChanges]: (state, action) => {
-            if (!state.fetched) return { ...state };
-
-            const items = state.items;
-            const fetchData = action.payload.reduce(
-                (a, c) => ({ ...a, [c.id]: c }),
-                {}
-            );
-
-            const insertItems = Object.keys(fetchData).filter(
-                id => !(id in items)
-            );
-            const deleteItems = Object.keys(items).filter(
-                id => !(id in fetchData)
-            );
-            const updateItems = Object.keys(fetchData).filter(
-                id => id in items && !equal(fetchData[id], items[id])
-            );
-
-            logger.debug(`insertItems: ${JSON.stringify(insertItems)}`);
-            logger.debug(`deleteItems: ${JSON.stringify(deleteItems)}`);
-            logger.debug(`updateItems: ${JSON.stringify(updateItems)}`);
-
+        [actions.changeRegion]: (state, action) => {
             return {
                 ...state,
-                changes: {
-                    insert: insertItems,
-                    delete: deleteItems,
-                    update: updateItems
-                },
-                changed:
-                    insertItems.length ||
-                    deleteItems.length ||
-                    updateItems.length
-                        ? true
-                        : false
-            };            
+                region: action.payload.region
+            };
         }
     },
     initialState

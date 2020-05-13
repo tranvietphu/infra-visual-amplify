@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import SignoutButton from "./signoutButton";
+import RegionBox from "./regionBox";
 import HelpButton from "./helpButton";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -32,14 +33,15 @@ class MyAppBar extends Component {
                         color="inherit"
                         className={classes.grow}
                     >
-                        {"きゃぶぷろ"}
+                        {"インフラ・ビジュアル"}
                     </Typography>
                     <Person />
                     <Typography color="inherit" className={classes.user}>
                         {name}
                     </Typography>
                     <SignoutButton />
-                    <HelpButton />
+                    <RegionBox/>
+                    <HelpButton/>
                 </Toolbar>
             </AppBar>
         );

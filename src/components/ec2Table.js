@@ -3,28 +3,28 @@ import { connect } from "react-redux";
 import ReactTable from "react-table";
 import PropTypes from "prop-types";
 import { compose } from "recompose";
-import { I18n, Logger, Cache } from "aws-amplify";
+import { I18n, Cache } from "aws-amplify";
 import moment from "moment";
-import { fetchData } from "../actions/dataActions";
+import { fetchEc2 } from "../actions/dataActions";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import yellow from "@material-ui/core/colors/yellow";
 import lightBlue from "@material-ui/core/colors/lightBlue";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-import CloudUploadOutlinedIcon from "@material-ui/icons/CloudUploadOutlined";
+//import CloudUploadOutlinedIcon from "@material-ui/icons/CloudUploadOutlined";
 import RefreshIcon from "@material-ui/icons/Refresh";
-import TextField from "@material-ui/core/TextField";
+//import TextField from "@material-ui/core/TextField";
 import Fade from "@material-ui/core/Fade";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import FormControl from "@material-ui/core/FormControl";
-import NativeSelect from "@material-ui/core/NativeSelect";
+//import FormControl from "@material-ui/core/FormControl";
+//import NativeSelect from "@material-ui/core/NativeSelect";
 import { red } from "@material-ui/core/colors";
-import Link from "@material-ui/core/Link";
+//import Link from "@material-ui/core/Link";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "react-table/react-table.css";
 
-const logger = new Logger("patientTable");
+//const logger = new Logger("patientTable");
 
 const styles = theme => ({
     root: {
@@ -99,53 +99,15 @@ const styles = theme => ({
 class ReactTableComp extends Component {
     constructor(props) {
         super(props);
-        props.fetchData();
+        props.fetchEc2(this.props.region);
     }
 
     handleRefresh = () => {
-        this.props.fetchData();
-    };
-
-    groupBy = (objectArray, property) => {
-        return objectArray.reduce(function(total, obj) {
-            let key = obj[property];
-            if (!total[key]) {
-                total[key] = {
-                    ident: obj["ident"],
-                    first_event_time: obj["event_time"],
-                    last_event_time: obj["event_time"],
-                    heart_rate_summary: obj["heart_rate_summary"].toFixed(2),
-                    s4_strength_summary: obj["s4_strength_summary"].toFixed(2),
-                    emat_summary: obj["emat_summary"].toFixed(2)
-                };
-            } else {
-                if (
-                    moment(obj["event_time"]) >
-                    moment(total[key]["last_event_time"])
-                ) {
-                    total[key]["last_event_time"] = obj["event_time"];
-                    total[key]["heart_rate_summary"] = obj[
-                        "heart_rate_summary"
-                    ].toFixed(2);
-                    total[key]["s4_strength_summary"] = obj[
-                        "s4_strength_summary"
-                    ].toFixed(2);
-                    total[key]["emat_summary"] = obj["emat_summary"].toFixed(2);
-                }
-                if (
-                    moment(obj["event_time"]) <
-                    moment(total[key]["first_event_time"])
-                ) {
-                    total[key]["first_event_time"] = obj["event_time"];
-                }
-            }
-            return total;
-        }, {});
+        this.props.fetchEc2(this.props.region);
     };
 
     render() {
-        const { classes, data, loading, username, groups } = this.props;
-        const { groupBy } = this;
+        const { classes, data, loading} = this.props;
 
         //let grouped_data = groupBy(Object.values(data), "ident");
         const CaptionElement = () => (
@@ -172,8 +134,7 @@ class ReactTableComp extends Component {
                 },
                 headerStyle: { textAlign: "center" },
                 style: { textAlign: "center" },
-                filterable: false,
-                sortable: false
+                filterable: false
             },
             {
                 Header: "type",
@@ -183,8 +144,7 @@ class ReactTableComp extends Component {
                 },
                 headerStyle: { textAlign: "center" },
                 style: { textAlign: "center" },
-                filterable: false,
-                sortable: false
+                filterable: false
             },
             {
                 Header: "keyname",
@@ -205,8 +165,7 @@ class ReactTableComp extends Component {
                 },
                 headerStyle: { textAlign: "center" },
                 style: { textAlign: "center" },
-                filterable: false,
-                sortable: false
+                filterable: false
             },
             {
                 Header: "vpc",
@@ -216,8 +175,7 @@ class ReactTableComp extends Component {
                 },
                 headerStyle: { textAlign: "center" },
                 style: { textAlign: "center" },
-                filterable: false,
-                sortable: false
+                filterable: false
             },
             {
                 Header: "subnet",
@@ -227,8 +185,7 @@ class ReactTableComp extends Component {
                 },
                 headerStyle: { textAlign: "center" },
                 style: { textAlign: "center" },
-                filterable: false,
-                sortable: false
+                filterable: false
             },
             {
                 Header: "zone",
@@ -238,8 +195,7 @@ class ReactTableComp extends Component {
                 },
                 headerStyle: { textAlign: "center" },
                 style: { textAlign: "center" },
-                filterable: false,
-                sortable: false
+                filterable: false
             }
         ];
 
@@ -253,20 +209,6 @@ class ReactTableComp extends Component {
                             <CaptionElement />
                         </div>
                         <div className="col-md-6 text-right">
-                            <Tooltip title="アップロード">
-                                <IconButton
-                                    aria-label="アップロード"
-                                    onClick={() =>
-                                        (window.location.hash =
-                                            "#/patients/upload")
-                                    }
-                                    component="div"
-                                >
-                                    <div className={classes.wrapper}>
-                                        <CloudUploadOutlinedIcon />
-                                    </div>
-                                </IconButton>
-                            </Tooltip>
                             <Tooltip title="再読み込み">
                                 <IconButton
                                     aria-label="Refresh"
@@ -341,23 +283,20 @@ class ReactTableComp extends Component {
 ReactTableComp.propTypes = {
     classes: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
-    username: PropTypes.string,
-    groups: PropTypes.arrayOf(PropTypes.string),
     loading: PropTypes.bool.isRequired,
-    fetchData: PropTypes.func.isRequired
+    fetchEc2: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-    data: state.data.items,
-    username: state.user.name,
-    groups: state.user.groups,
-    loading: state.data.loading
+    data: state.data.ec2s,
+    region: state.data.region,
+    loading: state.data.loading,
 });
 
 export default compose(
     withStyles(styles),
     connect(
         mapStateToProps,
-        { fetchData }
+        { fetchEc2 }
     )
 )(ReactTableComp);

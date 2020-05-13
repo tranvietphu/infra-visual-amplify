@@ -12,7 +12,7 @@ import { SnackbarProvider, withSnackbar } from "notistack";
 import { history } from "./store";
 import MyAppBar from "./components/appBar/appBar";
 import Routes from "./routes";
-import { fetchData } from "./actions/dataActions";
+import { fetchEc2 } from "./actions/dataActions";
 import MyBreadcrumbs from "./components/breadcrumbs";
 
 // eslint-disable-next-line no-unused-vars
@@ -34,7 +34,7 @@ class Main extends Component {
         super(props);
         
         //this.job = new cron.CronJob("*/30 * * * * *", () => {
-        //    props.fetchData(true);
+        //    props.fetchEc2(true);
         //});
         //this.job.start();
 
@@ -76,8 +76,9 @@ class Main extends Component {
     };
 
     render() {
-        const { classes, changed, enqueueSnackbar, groups } = this.props;
+        const { classes, enqueueSnackbar, groups } = this.props;
 
+        /*
         if (groups.includes("Doctors") && changed) {
             const message =
                 "データが更新されています。再読み込みしてください。";
@@ -89,7 +90,8 @@ class Main extends Component {
                 autoHideDuration: 30000
             });
         }
-
+        */
+       
         return (
             <Fragment>
                 <MyAppBar />
@@ -106,14 +108,12 @@ class Main extends Component {
 
 Main.propTypes = {
     classes: PropTypes.object.isRequired,
-    changed: PropTypes.bool.isRequired,
     enqueueSnackbar: PropTypes.func.isRequired,
-    fetchData: PropTypes.func.isRequired,
+    fetchEc2: PropTypes.func.isRequired,
     groups: PropTypes.arrayOf(PropTypes.string)
 };
 
 const mapStateToProps = state => ({
-    changed: state.data.changed,
     groups: state.user.groups
 });
 
@@ -122,7 +122,7 @@ const SnackbarMain = compose(
     withStyles(styles),
     connect(
         mapStateToProps,
-        { fetchData }
+        { fetchEc2 }
     )
 )(Main);
 

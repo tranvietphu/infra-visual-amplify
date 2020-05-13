@@ -18,9 +18,9 @@ const styles = theme => ({
 });
 
 class SignoutButton extends Component {
-    constructor(props) {
-        super(props);
-    }
+    //constructor(props) {
+    //    super(props);
+    //}
 
     onSignout = () => {
         Auth.signOut()

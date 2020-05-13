@@ -55,9 +55,9 @@ class HelpButton extends Component {
             const path = "/feedback";
             const params = {
                 body: {
-                    Subject: "きゃぶぷろからの問い合わせ",
+                    Subject: "インフラ・ビジュアルからの問い合わせ",
                     Message:
-                        "きゃぶぷろからの問い合わせ：\n" +
+                        "インフラ・ビジュアルからの問い合わせ：\n" +
                         feedbackMsg +
                         "\n\n送信者：" +
                         this.props.username
