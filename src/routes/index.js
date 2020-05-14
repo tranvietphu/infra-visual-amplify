@@ -6,6 +6,7 @@ import queryString from "query-string";
 
 import Home from "../Home";
 import ec2Table from "../components/ec2Table";
+import rdsTable from "../components/rdsTable";
 
 class ProtectedRouteComponent extends Component {
     render() {
@@ -63,6 +64,11 @@ class Routes extends Component {
                 <ProtectedRoute
                     path="/ec2"
                     component={ec2Table}
+                    allowed={["Doctors"]}
+                />
+                <ProtectedRoute
+                    path="/rds"
+                    component={rdsTable}
                     allowed={["Doctors"]}
                 />
                 <Route render={() => <Redirect to="/" />} />

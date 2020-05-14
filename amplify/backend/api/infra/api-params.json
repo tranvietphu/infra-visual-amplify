@@ -9,6 +9,16 @@
                     "/GET"
                 ]
             }
+        },
+        {
+            "name": "/rds",
+            "lambdaFunction": "rdsFunc",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            }
         }
     ],
     "resourceName": "infra",
@@ -16,10 +26,13 @@
     "functionArns": [
         {
             "lambdaFunction": "ec2Func"
+        },
+        {
+            "lambdaFunction": "rdsFunc"
         }
     ],
     "privacy": {
-        "auth": 1,
+        "auth": 2,
         "unauth": 0,
         "authRoleName": "amplify-infravisual-dev-43128-authRole",
         "unAuthRoleName": "amplify-infravisual-dev-43128-unauthRole"
@@ -32,6 +45,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "rdsFunc",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
-    ]
+    ],
+    "uuid": "28e9b282"
 }

@@ -88,6 +88,9 @@ Parameters:
                           
   dependsOn:
     Type: CommaDelimitedList
+
+  hostedUI:
+    Type: String
     
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]

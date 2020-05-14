@@ -32,6 +32,7 @@
     "userpoolClientSetAttributes": false,
     "resourceName": "infravisual4b3e49d5",
     "authSelections": "identityPoolAndUserPool",
+    "hostedUI": false,
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",

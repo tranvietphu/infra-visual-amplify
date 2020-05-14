@@ -6,6 +6,7 @@ const logger = new Logger("dataReducer");
 
 const initialState = {
     ec2s: {},
+    rdss: {},
     region: "ap-northeast-1",
     fetched: false,
     loading: false
@@ -31,6 +32,21 @@ export default handleActions(
             return {
                 ...state,
                 ec2s: _items,
+                fetched: true,
+                loading: false
+            };
+        },
+        [actions.fetchRds]: (state, action) => {
+            const _items = action.payload.reduce(
+                (a, c) => ({ ...a, [c.id]: c }),
+                {}
+            );
+
+            logger.debug(`insertItems: ${JSON.stringify(_items)}`);
+            
+            return {
+                ...state,
+                rdss: _items,
                 fetched: true,
                 loading: false
             };

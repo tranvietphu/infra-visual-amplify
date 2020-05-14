@@ -41,6 +41,17 @@ const linkMap = {
             params: ""
         };
     },
+    "#/rds": (classes, params) => {
+        return {
+            element: () => (
+                <Fragment>
+                    <PermIdentityOutlinedIcon className={classes.icon} />
+                    {"RDS選択"}
+                </Fragment>
+            ),
+            params: ""
+        };
+    },
     "#/ec2/upload": (classes, params) => {
         return {
             element: () => (
