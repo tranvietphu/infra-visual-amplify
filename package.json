@@ -1,7 +1,9 @@
 {
   "name": "infra-visual",
   "version": "0.1.0",
+  "description": "",
   "private": true,
+  "main": "index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -29,8 +31,9 @@
     "redux-actions": "^2.6.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "amplify": "0.0.11",
     "aws-amplify": "^3.0.10",
-    "aws-amplify-react": "^4.1.9",
+    "aws-amplify-react": "^2.3.12",
     "jquery": "^3.4.1"
   },
   "scripts": {

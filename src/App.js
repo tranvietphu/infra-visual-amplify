@@ -1,31 +1,3 @@
-/*
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>My_token = {window.token}</p>
-      </header>
-    </div>
-  );
-}
-export default App;
-*/
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
@@ -37,7 +9,6 @@ import withRoot from "./withRoot";
 import withAuth from "./withAuth";
 import IntegrationNotistackMain from "./Main";
 import actions from "./actions/userActions";
-import "./App.css";
 
 Amplify.configure(awsmobile);
 Amplify.Logger.LOG_LEVEL = "INFO";

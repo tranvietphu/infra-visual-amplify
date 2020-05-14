@@ -3257,6 +3257,11 @@ amazon-cognito-identity-js@^4.2.3:
     crypto-js "^3.3.0"
     js-cookie "^2.1.4"
 
+amplify@0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/amplify/-/amplify-0.0.11.tgz#fd81c7068c862823f2508b8f3c650eb76753f58c"
+  integrity sha1-/YHHBoyGKCPyUIuPPGUOt2dT9Yw=
+
 ansi-colors@^3.0.0:
   version "3.2.4"
   resolved "https://registry.npmjs.org/ansi-colors/-/ansi-colors-3.2.4.tgz#e3a3da4bfbae6c86a9c285625de124a234026fbf"
@@ -3543,10 +3548,10 @@ autoprefixer@^9.6.1:
     postcss "^7.0.27"
     postcss-value-parser "^4.0.3"
 
-aws-amplify-react@^4.1.9:
-  version "4.1.9"
-  resolved "https://registry.npmjs.org/aws-amplify-react/-/aws-amplify-react-4.1.9.tgz#3adb6e2b5d53d992842cca26dd85d161226c6942"
-  integrity sha512-Ru3RK4R2hpC+7s0nYDbOs65kFZsFPcKcP6zBjWT3i6xtnJ7KXPddv7vlu3t/dv6QD6g98EiaPP9vQjoRe23ZMw==
+aws-amplify-react@^2.3.12:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/aws-amplify-react/-/aws-amplify-react-2.6.3.tgz#b7bbfce30ad4ab6e83ce77c50f5d837f05d1fdfe"
+  integrity sha512-fptSdGvBNvtEAn/tAN3dDm2SFRSpWafYVFywh/WVFYbDIULdjQEbTW0ZjefVDQcu2KMwlFf0O/wRNQRqqrqlwA==
   dependencies:
     qrcode.react "^0.8.0"
     regenerator-runtime "^0.11.1"
