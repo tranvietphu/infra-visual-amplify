@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import SignoutButton from "./signoutButton";
 import RegionBox from "./regionBox";
+import MenuBox from "./menuBox";
 import HelpButton from "./helpButton";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -28,6 +29,7 @@ class MyAppBar extends Component {
         return (
             <AppBar className={classes.root} position="static">
                 <Toolbar>
+                    <MenuBox/>
                     <Typography
                         variant="h5"
                         color="inherit"
@@ -40,8 +42,8 @@ class MyAppBar extends Component {
                         {name}
                     </Typography>
                     <SignoutButton />
-                    <RegionBox/>
-                    <HelpButton/>
+                    <RegionBox />
+                    <HelpButton />
                 </Toolbar>
             </AppBar>
         );
