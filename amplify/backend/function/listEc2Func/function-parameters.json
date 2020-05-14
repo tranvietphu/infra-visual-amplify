@@ -1,9 +1,0 @@
-{
-    "permissions": {
-        "auth": {
-            "infravisual4b3e49d5": [
-                "read"
-            ]
-        }
-    }
-}
