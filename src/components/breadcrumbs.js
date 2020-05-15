@@ -130,9 +130,9 @@ class MyBreadcrumbs extends Component {
                         const last = index === hashes.length - 1;
                         const to = `#/${hashes.slice(0, index + 1).join("/")}`;
 
-                        if (!groups.includes("Doctors")) {
-                            if (to === "#/ec2") return;
-                        }
+                        //if (!groups.includes("Doctors")) {
+                        //    if (to === "#/ec2") return;
+                        //}
 
                         if (to in linkMap) {
                             const link = linkMap[to](classes, params);

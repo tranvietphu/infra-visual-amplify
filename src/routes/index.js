@@ -18,6 +18,8 @@ class ProtectedRouteComponent extends Component {
             ...props
         } = this.props;
 
+        const isAllowed = true;
+        /*
         const isAllowed = props => {
             if (!allowed.some(group => groups.includes(group))) return false;
             if (groups.includes("Patients")) {
@@ -26,7 +28,8 @@ class ProtectedRouteComponent extends Component {
             }
             return true;
         };
-
+        */
+       
         return (
             <Route
                 {...props}
@@ -61,15 +64,13 @@ class Routes extends Component {
         return (
             <Switch>
                 <Route exact path={"/"} component={Home} />
-                <ProtectedRoute
+                <Route
                     path="/ec2"
                     component={ec2Table}
-                    allowed={["Doctors"]}
                 />
-                <ProtectedRoute
+                <Route
                     path="/rds"
                     component={rdsTable}
-                    allowed={["Doctors"]}
                 />
                 <Route render={() => <Redirect to="/" />} />
             </Switch>
