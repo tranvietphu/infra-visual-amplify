@@ -7,6 +7,7 @@ const logger = new Logger("dataReducer");
 const initialState = {
     ec2s: {},
     rdss: {},
+    vpcs: {},
     region: "ap-northeast-1",
     fetched: false,
     loading: false
@@ -47,6 +48,21 @@ export default handleActions(
             return {
                 ...state,
                 rdss: _items,
+                fetched: true,
+                loading: false
+            };
+        },
+        [actions.fetchVpc]: (state, action) => {
+            const _items = action.payload.reduce(
+                (a, c) => ({ ...a, [c.id]: c }),
+                {}
+            );
+
+            logger.debug(`insertItems: ${JSON.stringify(_items)}`);
+            
+            return {
+                ...state,
+                vpcs: _items,
                 fetched: true,
                 loading: false
             };

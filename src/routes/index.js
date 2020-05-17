@@ -7,6 +7,7 @@ import queryString from "query-string";
 import Home from "../Home";
 import ec2Table from "../components/ec2Table";
 import rdsTable from "../components/rdsTable";
+import vpcTable from "../components/vpcTable";
 
 class ProtectedRouteComponent extends Component {
     render() {
@@ -71,6 +72,10 @@ class Routes extends Component {
                 <Route
                     path="/rds"
                     component={rdsTable}
+                />
+                <Route
+                    path="/vpc"
+                    component={vpcTable}
                 />
                 <Route render={() => <Redirect to="/" />} />
             </Switch>

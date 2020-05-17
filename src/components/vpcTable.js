@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { compose } from "recompose";
 import { I18n, Cache } from "aws-amplify";
 import moment from "moment";
-import { fetchEc2 } from "../actions/dataActions";
+import { fetchVpc } from "../actions/dataActions";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import yellow from "@material-ui/core/colors/yellow";
@@ -13,7 +13,6 @@ import lightBlue from "@material-ui/core/colors/lightBlue";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 //import CloudUploadOutlinedIcon from "@material-ui/icons/CloudUploadOutlined";
-import PhotoLibraryOutlinedIcon from "@material-ui/icons/PhotoLibraryOutlined";
 import RefreshIcon from "@material-ui/icons/Refresh";
 //import TextField from "@material-ui/core/TextField";
 import Fade from "@material-ui/core/Fade";
@@ -97,18 +96,18 @@ const styles = theme => ({
     }
 });
 
-class ReactTableComp extends Component {
+class VpcTableComp extends Component {
     constructor(props) {
         super(props);
-        props.fetchEc2(this.props.region);
+        props.fetchVpc(this.props.region);
     }
 
     handleRefresh = () => {
-        this.props.fetchEc2(this.props.region);
+        this.props.fetchVpc(this.props.region);
     };
 
     render() {
-        const { classes, data, loading } = this.props;
+        const { classes, data, loading} = this.props;
 
         //let grouped_data = groupBy(Object.values(data), "ident");
         const CaptionElement = () => (
@@ -121,7 +120,7 @@ class ReactTableComp extends Component {
                         padding: "1em"
                     }}
                 >
-                    EC2一覧
+                    VPC一覧
                 </h6>
             </div>
         );
@@ -138,8 +137,8 @@ class ReactTableComp extends Component {
                 filterable: false
             },
             {
-                Header: "type",
-                accessor: "type",
+                Header: "cidr",
+                accessor: "cidr",
                 Cell: props => {
                     return <div>{props.value}</div>;
                 },
@@ -148,49 +147,22 @@ class ReactTableComp extends Component {
                 filterable: false
             },
             {
-                Header: "keyname",
-                accessor: "keyname",
+                Header: "defaut",
+                accessor: "defaut",
                 Cell: props => {
-                    return <div>{props.value}</div>;
+                    if(props.value){
+                        return <div>Yes</div>;
+                    }else{
+                        return <div>No</div>;
+                    }
                 },
                 headerStyle: { textAlign: "center" },
                 style: { textAlign: "center" },
-                filterable: false,
-                sortable: false
+                filterable: false
             },
             {
                 Header: "state",
                 accessor: "state",
-                Cell: props => {
-                    return <div>{props.value}</div>;
-                },
-                headerStyle: { textAlign: "center" },
-                style: { textAlign: "center" },
-                filterable: false
-            },
-            {
-                Header: "vpc",
-                accessor: "vpc",
-                Cell: props => {
-                    return <div>{props.value}</div>;
-                },
-                headerStyle: { textAlign: "center" },
-                style: { textAlign: "center" },
-                filterable: false
-            },
-            {
-                Header: "subnet",
-                accessor: "subnet",
-                Cell: props => {
-                    return <div>{props.value}</div>;
-                },
-                headerStyle: { textAlign: "center" },
-                style: { textAlign: "center" },
-                filterable: false
-            },
-            {
-                Header: "zone",
-                accessor: "zone",
                 Cell: props => {
                     return <div>{props.value}</div>;
                 },
@@ -210,20 +182,6 @@ class ReactTableComp extends Component {
                             <CaptionElement />
                         </div>
                         <div className="col-md-6 text-right">
-                            <Tooltip title="ビジュアル">
-                                <IconButton
-                                    aria-label="ビジュアル"
-                                    onClick={() =>
-                                        (window.location.hash =
-                                            "#/ec2/visual")
-                                    }
-                                    component="div"
-                                >
-                                    <div className={classes.wrapper}>
-                                        <PhotoLibraryOutlinedIcon />
-                                    </div>
-                                </IconButton>
-                            </Tooltip>
                             <Tooltip title="再読み込み">
                                 <IconButton
                                     aria-label="Refresh"
@@ -257,7 +215,7 @@ class ReactTableComp extends Component {
                                 id: Cache.getItem("defaultSortedId") || "id",
                                 desc:
                                     Cache.getItem("defaultSortedDesc") ===
-                                        "false"
+                                    "false"
                                         ? false
                                         : true
                             }
@@ -295,15 +253,15 @@ class ReactTableComp extends Component {
     }
 }
 
-ReactTableComp.propTypes = {
+VpcTableComp.propTypes = {
     classes: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
-    fetchEc2: PropTypes.func.isRequired
+    fetchVpc: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-    data: state.data.ec2s,
+    data: state.data.vpcs,
     region: state.data.region,
     loading: state.data.loading,
 });
@@ -312,6 +270,6 @@ export default compose(
     withStyles(styles),
     connect(
         mapStateToProps,
-        { fetchEc2 }
+        { fetchVpc }
     )
-)(ReactTableComp);
+)(VpcTableComp);

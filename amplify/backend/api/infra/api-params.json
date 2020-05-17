@@ -19,6 +19,16 @@
                     "/GET"
                 ]
             }
+        },
+        {
+            "name": "/vpc",
+            "lambdaFunction": "vpcFunc",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            }
         }
     ],
     "resourceName": "infra",
@@ -29,10 +39,13 @@
         },
         {
             "lambdaFunction": "rdsFunc"
+        },
+        {
+            "lambdaFunction": "vpcFunc"
         }
     ],
     "privacy": {
-        "auth": 2,
+        "auth": 3,
         "unauth": 0,
         "authRoleName": "amplify-infravisual-dev-43128-authRole",
         "unAuthRoleName": "amplify-infravisual-dev-43128-unauthRole"
@@ -53,7 +66,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "vpcFunc",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "28e9b282"
+    "uuid": "6dd6dcc2"
 }

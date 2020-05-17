@@ -80,6 +80,7 @@ class MenuBox extends Component {
                 >
                     <MenuItem onClick={this.moveTo} address="#/ec2">EC2</MenuItem>
                     <MenuItem onClick={this.moveTo} address="#/rds">RDS</MenuItem>
+                    <MenuItem onClick={this.moveTo} address="#/vpc">VPC</MenuItem>
                 </Menu>
             </div>
         );
