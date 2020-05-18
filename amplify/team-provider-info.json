@@ -20,6 +20,11 @@
                     "appId": "d2kaquvzdmxz8c",
                     "type": "manual"
                 }
+            },
+            "function": {
+                "ec2Func": {},
+                "rdsFunc": {},
+                "vpcFunc": {}
             }
         }
     }
