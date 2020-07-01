@@ -27,5 +27,34 @@
                 "vpcFunc": {}
             }
         }
+    },
+    "stg": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-infravisual-stg-154021-authRole",
+            "UnauthRoleArn": "arn:aws:iam::841604288696:role/amplify-infravisual-stg-154021-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::841604288696:role/amplify-infravisual-stg-154021-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-infravisual-stg-154021-deployment",
+            "UnauthRoleName": "amplify-infravisual-stg-154021-unauthRole",
+            "StackName": "amplify-infravisual-stg-154021",
+            "StackId": "arn:aws:cloudformation:us-west-2:841604288696:stack/amplify-infravisual-stg-154021/bd93c310-bb65-11ea-89cd-067aa3cae1e0",
+            "AmplifyAppId": "d23o6n49b6oy3s"
+        },
+        "categories": {
+            "auth": {
+                "infravisual4b3e49d5": {}
+            },
+            "function": {
+                "ec2Func": {},
+                "rdsFunc": {},
+                "vpcFunc": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d23o6n49b6oy3s",
+                    "type": "manual"
+                }
+            }
+        }
     }
 }

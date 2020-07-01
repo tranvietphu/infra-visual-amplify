@@ -67,7 +67,7 @@
 				"Runtime": "nodejs12.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-infravisual-dev-43128-deployment",
+					"S3Bucket": "amplify-infravisual-stg-154021-deployment",
 					"S3Key": "amplify-builds/vpcFunc-6c4c3565674d657a7739-build.zip"
 				}
 			}
