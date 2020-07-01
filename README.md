@@ -36,3 +36,4 @@ amplify env remove <env name>
 
 ## Git push:
 git remote add origin2 https://github.com/tranvietphu/infra-visual-amplify.git
+git push -u origin2 master
