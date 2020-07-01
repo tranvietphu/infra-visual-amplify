@@ -14,13 +14,16 @@ https://docs.amplify.aws/cli/teams/overview#setting-up-prod-and-dev-environments
 
 ### 4. Build backend: 
 $amplify add env  (env-name)
+
 $amplify push
 
 $amplify env checkout (env-name)
+
 $amplify env pull
 
 ### 5. Build and run frontend on local:
 $yarn install
+
 $yarn start
 
 ### 6. Publish front to cloud:
@@ -36,4 +39,5 @@ amplify env remove <env name>
 
 ## Git push:
 git remote add origin2 https://github.com/tranvietphu/infra-visual-amplify.git
+
 git push -u origin2 master
